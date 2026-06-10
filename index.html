@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhD申请咨询 · 文艺极客</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #555;
+    --ink-light: #888;
+    --ink-faint: #bbb;
+    --bg: #fafaf8;
+    --bg-card: #fff;
+    --accent: #2d6a4f;
+    --accent-light: #e8f4ef;
+    --accent-mid: #52b788;
+    --gold: #b5821a;
+    --gold-light: #fdf3dc;
+    --line: #e8e6e0;
+    --serif: 'Noto Serif SC', Georgia, serif;
+    --sans: 'Noto Sans SC', system-ui, sans-serif;
+    --radius: 10px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--line); }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 5vw, 34px);
+    font-weight: 600; line-height: 1.4;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-desc {
+    font-size: 15px; color: var(--ink-mid);
+    max-width: 520px; line-height: 1.9; margin-bottom: 10px;
+  }
+  .hero-sub { font-size: 13px; color: var(--ink-light); margin-bottom: 32px; line-height: 1.7; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 14px; font-weight: 500; padding: 11px 24px;
+    border-radius: var(--radius); text-decoration: none;
+    letter-spacing: 0.02em; transition: background 0.15s;
+  }
+  .btn-primary:hover { background: #235a42; }
+  .btn-ghost {
+    display: inline-block; color: var(--ink-mid); font-size: 13px;
+    text-decoration: none; border-bottom: 1px solid var(--ink-faint); padding-bottom: 1px;
+  }
+  .notice-banner {
+    background: var(--gold-light); border: 1px solid #e8c97a;
+    border-radius: var(--radius); padding: 12px 16px;
+    font-size: 13px; color: #7a5c10; margin-top: 28px;
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+  }
+  .notice-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  /* STATS */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; margin: 40px 0;
+  }
+  .stat { background: var(--bg-card); padding: 18px 12px; text-align: center; }
+  .stat-num {
+    font-family: var(--serif); font-size: 22px; font-weight: 600;
+    color: var(--accent); line-height: 1; margin-bottom: 6px;
+  }
+  .stat-label { font-size: 11px; color: var(--ink-light); line-height: 1.4; }
+
+  /* SECTIONS */
+  section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+    color: var(--ink-faint); text-transform: uppercase; margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 600;
+    color: var(--ink); margin-bottom: 8px; line-height: 1.4;
+  }
+  .section-sub { font-size: 13px; color: var(--ink-light); margin-bottom: 24px; line-height: 1.7; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 1px; background: var(--line);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent-mid); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent-mid);
+  }
+  .tl-dot.gold { background: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .tl-school { font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+  .tl-degree { font-size: 13px; color: var(--ink-mid); margin-bottom: 4px; }
+  .tl-note { font-size: 12px; color: var(--ink-light); line-height: 1.6; }
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 8px; border-radius: 20px; margin-left: 6px;
+    vertical-align: middle; background: var(--accent-light); color: var(--accent);
+  }
+  .badge.gold { background: var(--gold-light); color: var(--gold); }
+
+  /* OFFER LIST */
+  .offer-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .offer-row { display: flex; align-items: baseline; gap: 10px; font-size: 13px; }
+  .offer-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-mid); flex-shrink: 0; margin-top: 6px; }
+  .offer-school { font-weight: 500; color: var(--ink); }
+  .offer-detail { color: var(--ink-light); font-size: 12px; }
+
+  /* ADV CARDS */
+  .adv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .adv-card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 18px 16px;
+  }
+  .adv-icon { font-size: 20px; margin-bottom: 10px; display: block; }
+  .adv-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .adv-desc { font-size: 12px; color: var(--ink-light); line-height: 1.6; }
+
+  /* COMPARE TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 28px; }
+  .compare-table th {
+    text-align: left; font-weight: 500; font-size: 11px; color: var(--ink-light);
+    padding: 8px 12px; background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .compare-table td {
+    padding: 10px 12px; border-bottom: 1px solid var(--line);
+    color: var(--ink-mid); vertical-align: top;
+  }
+  .compare-table td:first-child { color: var(--ink); font-weight: 400; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .me { color: var(--accent); font-weight: 500; }
+
+  /* SERVICE CARDS */
+  .service-stack { display: flex; flex-direction: column; gap: 12px; }
+  .service-card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px 20px; position: relative;
+  }
+  .service-card.featured { border-color: var(--accent-mid); border-width: 1.5px; }
+  .featured-badge {
+    position: absolute; top: -1px; right: 16px;
+    background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 500; padding: 3px 10px;
+    border-radius: 0 0 6px 6px; letter-spacing: 0.04em;
+  }
+  .svc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .svc-name { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .svc-price-block { text-align: right; flex-shrink: 0; margin-left: 12px; }
+  .svc-price {
+    font-family: var(--serif); font-size: 20px; font-weight: 600;
+    color: var(--accent); white-space: nowrap; display: block; line-height: 1.2;
+  }
+  .svc-price-note { font-size: 11px; color: var(--ink-light); display: block; text-align: right; margin-top: 2px; }
+  .svc-audience { font-size: 11px; color: var(--ink-light); margin-bottom: 10px; }
+  .svc-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.7; margin-bottom: 12px; }
+  .svc-includes { font-size: 12px; color: var(--ink-light); margin-bottom: 12px; line-height: 1.9; }
+  .svc-includes strong { color: var(--ink-mid); font-weight: 500; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px; color: var(--ink-mid); background: var(--bg);
+    border: 1px solid var(--line); padding: 2px 8px; border-radius: 20px;
+  }
+  .tag.green { background: var(--accent-light); color: var(--accent); border-color: #b7dccb; }
+
+  /* SCOPE BOX */
+  .scope-box {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 16px 18px;
+    font-size: 12px; color: var(--ink-light); line-height: 1.8; margin-top: 16px;
+  }
+  .scope-box strong { color: var(--ink-mid); font-weight: 500; }
+
+  /* PROCESS */
+  .process-list { display: flex; flex-direction: column; }
+  .process-step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--serif); font-size: 22px; font-weight: 600;
+    color: var(--accent-mid); line-height: 1; flex-shrink: 0; width: 28px; padding-top: 2px;
+  }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .step-desc { font-size: 12px; color: var(--ink-light); line-height: 1.6; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 20px; }
+  .faq-q { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .faq-a { font-size: 13px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* FITCHECK */
+  .fitcheck-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fitcheck-card {
+    background: var(--accent-light); border: 1px solid #b7dccb;
+    border-radius: var(--radius); padding: 12px 14px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .fitcheck-card.fitcheck-no {
+    background: #fdf0f0; border-color: #e8c4c4;
+  }
+  .fitcheck-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .fitcheck-text { font-size: 12px; color: var(--ink-mid); line-height: 1.6; }
+
+  /* CASES */
+  .case-placeholder {
+    background: var(--bg-card);
+    border: 1.5px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .case-placeholder-icon { font-size: 28px; }
+  .case-placeholder-text {
+    font-size: 14px; font-weight: 500;
+    color: var(--ink-mid); line-height: 1.8;
+  }
+  .case-placeholder-text span {
+    display: block; font-size: 12px;
+    font-weight: 300; color: var(--ink-light); margin-top: 4px;
+  }
+  .result-card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 14px 16px;
+  }
+  .result-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .result-school { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .result-detail { font-size: 11px; color: var(--ink-light); line-height: 1.5; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 16px 18px;
+    font-size: 12px; color: var(--ink-light); line-height: 1.8;
+  }
+  .disclaimer strong { color: var(--ink-mid); font-weight: 500; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--accent-light); border: 1px solid #b7dccb;
+    border-radius: var(--radius); padding: 28px 24px; text-align: center;
+  }
+  .contact-box h3 {
+    font-family: var(--serif); font-size: 18px; font-weight: 600;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .contact-box p { font-size: 13px; color: var(--ink-mid); margin-bottom: 20px; line-height: 1.7; }
+  .contact-methods { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .contact-item {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 12px 20px;
+    font-size: 13px; font-weight: 500; color: var(--ink); text-align: center; min-width: 140px;
+  }
+  .contact-item span { display: block; font-size: 11px; color: var(--ink-light); font-weight: 300; margin-bottom: 3px; }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 0; text-align: center;
+    font-size: 12px; color: var(--ink-faint); line-height: 1.9;
+  }
+
+  .divider { height: 1px; background: var(--line); margin: 24px 0; }
+
+  @media (max-width: 520px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .adv-grid { grid-template-columns: 1fr; }
+    .svc-header { flex-direction: column; gap: 6px; }
+    .svc-price-block { text-align: left; }
+    .svc-price-note { text-align: left; }
+    .hero { padding: 40px 0 32px; }
+    .compare-table { font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 8px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">CS / AI · PhD · MPhil · 全球混申</p>
+    <h1>背景普通，也能申到 Top 20？<br><em>我用自己的经历告诉你怎么做到</em></h1>
+    <p class="hero-desc">
+      均分 85、无发表、无暑研、无强推——这是我申请时的真实背景。
+      最终靠选校策略、套磁节奏和文书逻辑，全程 DIY 拿到圣母大学全奖 CS PhD。
+      如果你也有类似的处境，我们很可能聊得来。
+    </p>
+    <p class="hero-sub">覆盖美国 Top 10–50 · 香港五所 · 欧洲岗位制 · 中东高校</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn-primary">预约咨询 →</a>
+      <a href="#services" class="btn-ghost">查看服务与定价</a>
+    </div>
+    <div class="notice-banner">
+      <span class="notice-icon">🕐</span>
+      <div>
+        <strong>2026 申请季早鸟优惠开放中</strong>——全程陪跑早鸟价 ¥15,000（正式价 ¥20,000），前 5 位学员专享，同时获得真实案例背书资格。名额有限，先到先得。
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">985</div>
+      <div class="stat-label">厦大本科<br>计算机 + 经济双学位</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">全奖</div>
+      <div class="stat-label">港科大 MPhil<br>红鸟挑战营入选</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Top 20</div>
+      <div class="stat-label">美国博士全额奖<br>26 Fall 入学</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">DIY</div>
+      <div class="stat-label">全程无中介<br>真实可复刻</div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <section id="background">
+    <p class="section-label">我的背景</p>
+    <p class="section-title">三段完整申请，每一步第一手经验</p>
+    <p class="section-sub">申请没有捷径，但有方法——这是我一路走来真实验证过的路线。</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-school">本科入学前</div>
+        <div class="tl-degree">普通家庭背景，无特殊资源</div>
+        <div class="tl-note">没有海外背景，没有人脉，靠自己一步一步摸索出路</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-school">厦门大学（985）<span class="badge">本科</span></div>
+        <div class="tl-degree">计算机科学与技术 + 经济学双学位</div>
+        <div class="tl-note">均分 85/100，GPA 3.5/4.0。第一次面对完全陌生的竞争环境，学会如何在资源有限的情况下规划科研出路</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-school">香港科技大学（广州）<span class="badge gold">全奖 MPhil</span></div>
+        <div class="tl-degree">CS / AI 方向 · 红鸟挑战营入选</div>
+        <div class="tl-note">全额奖学金覆盖学费与生活费。组内 6 人，5 人获录取。亲历港校研究生申请全流程，掌握港校面试偏好与套磁节奏</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-school">圣母大学（US News CSE Top 20）<span class="badge gold">全奖 PhD</span></div>
+        <div class="tl-degree">CS / AI · 2026 年下半年入学</div>
+        <div class="tl-note">2025–26 申请季刚结束，套磁策略、SOP 写作逻辑、面试信息极为新鲜。申请约 20 个项目，收到美国 Top 20 + 港三等多个 offer</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size:12px;color:var(--ink-light);margin-bottom:12px;font-weight:500;letter-spacing:0.06em;">部分 Offer 情况（26 Fall）</p>
+    <div class="offer-list">
+      <div class="offer-row">
+        <div class="offer-dot"></div>
+        <div><span class="offer-school">University of Notre Dame</span> <span class="offer-detail">· CSE PhD · 全奖 · US News Top 20</span></div>
+      </div>
+      <div class="offer-row">
+        <div class="offer-dot"></div>
+        <div><span class="offer-school">香港三所高校</span> <span class="offer-detail">· CS/AI PhD · 全奖 · 含港大 / 港中文 / 港城大</span></div>
+      </div>
+      <div class="offer-row">
+        <div class="offer-dot" style="background:var(--ink-faint);"></div>
+        <div style="color:var(--ink-light);font-size:12px;">其余 offer 细节可咨询时进一步了解</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ME -->
+  <section id="advantage">
+    <p class="section-label">为什么找我咨询</p>
+    <p class="section-title">不是精英顾问，是走过同一条路的人</p>
+    <p class="section-sub">市面上有很多顶配背景的顾问。我的差异化不是比他们更"牛"，而是比他们更懂你的处境。</p>
+
+    <div class="adv-grid">
+      <div class="adv-card">
+        <span class="adv-icon">🪴</span>
+        <div class="adv-title">三无逆袭，真实可参考</div>
+        <div class="adv-desc">无 pub、无暑研、无强推，均分 85，最终拿到 Top 20 全奖。知道哪些短板真的影响申请，哪些只是焦虑</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🔬</span>
+        <div class="adv-title">CS / AI 方向专精</div>
+        <div class="adv-desc">真正做过科研（CV / NLP / HCI），理解导师生态、子方向冷热、套磁的技术门槛，不是泛泛而谈</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🗓️</span>
+        <div class="adv-title">26 Fall 第一手信息</div>
+        <div class="adv-desc">申请季刚结束，各校套磁回复率、面试风格、招生偏好都是最新经验，不是几年前的过时信息</div>
+      </div>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>大型中介</th>
+          <th>学霸顾问</th>
+          <th>我</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>背景透明度</td>
+          <td>外包，顾问背景模糊</td>
+          <td>顶配简历，难以复刻</td>
+          <td class="me">三无真实案例，可参考</td>
+        </tr>
+        <tr>
+          <td>申请信息时效</td>
+          <td>更新慢</td>
+          <td>因人而异</td>
+          <td class="me">26 Fall 第一手，极新</td>
+        </tr>
+        <tr>
+          <td>技术方向理解</td>
+          <td>弱</td>
+          <td>不稳定</td>
+          <td class="me">CS/AI 科研背景扎实</td>
+        </tr>
+        <tr>
+          <td>价格</td>
+          <td>3–15 万</td>
+          <td>偏高</td>
+          <td class="me">学生可承受，透明定价</td>
+        </tr>
+        <tr>
+          <td>服务立场</td>
+          <td>机构利益优先</td>
+          <td>个人秀成分多</td>
+          <td class="me">站在申请者一侧</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FIT CHECK -->
+  <section id="fitcheck">
+    <p class="section-label">适合我吗</p>
+    <p class="section-title">对号入座，看看我们是否聊得来</p>
+    <div class="fitcheck-grid">
+      <div class="fitcheck-card">
+        <span class="fitcheck-icon">✅</span>
+        <div class="fitcheck-text">985 / 211 / 海外本科，申 CS / AI 方向 PhD 或 MPhil</div>
+      </div>
+      <div class="fitcheck-card">
+        <span class="fitcheck-icon">✅</span>
+        <div class="fitcheck-text">背景有短板：GPA 不高、无 pub、无暑研，不知道如何突破</div>
+      </div>
+      <div class="fitcheck-card">
+        <span class="fitcheck-icon">✅</span>
+        <div class="fitcheck-text">全球混申，不确定美国 / 港校 / 欧洲怎么组合策略</div>
+      </div>
+      <div class="fitcheck-card">
+        <span class="fitcheck-icon">✅</span>
+        <div class="fitcheck-text">想全程 DIY，但需要有人帮你把关关键节点</div>
+      </div>
+      <div class="fitcheck-card fitcheck-no">
+        <span class="fitcheck-icon">❌</span>
+        <div class="fitcheck-text">纯文商科、医学等与 CS 无交叉的方向（暂不提供服务）</div>
+      </div>
+      <div class="fitcheck-card fitcheck-no">
+        <span class="fitcheck-icon">❌</span>
+        <div class="fitcheck-text">只想找人代写文书、不参与修改过程（我不代写，只指导）</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink-light);margin-top:16px;line-height:1.7;">不确定是否适合？先免费私信说明背景，我会直接告诉你。</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">服务与定价</p>
+    <p class="section-title">按需选择，不强制捆绑</p>
+    <p class="section-sub">从单次问诊到全程陪跑，找到适合你的方式。所有服务均为个人独立完成，不转包。</p>
+
+    <div class="service-stack">
+
+      <div class="service-card">
+        <div class="svc-header">
+          <div class="svc-name">A · 单次深度咨询</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥350</span>
+            <span class="svc-price-note">/ 小时 · 2 小时起预约</span>
+          </div>
+        </div>
+        <div class="svc-audience">适合：有具体问题、自己能搞定执行、只需要方向指引的同学</div>
+        <div class="svc-desc">
+          深聊一个核心问题：我的背景能申哪些学校？套磁怎么写？要不要先读 MPhil 再申 PhD？港校还是美国？
+        </div>
+        <div class="svc-includes">
+          <strong>包含：</strong>视频深度沟通 · 会后策略备忘录（500 字内）
+        </div>
+        <div class="svc-tags">
+          <span class="tag">背景评估</span>
+          <span class="tag">选校建议</span>
+          <span class="tag">方向规划</span>
+          <span class="tag">答疑解惑</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-header">
+          <div class="svc-name">单项服务（按需选购）</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥300</span>
+            <span class="svc-price-note">起 / 项</span>
+          </div>
+        </div>
+        <div class="svc-desc">不需要全套服务？可以单独选购以下任意一项。</div>
+        <div class="svc-includes">
+          <strong>套磁信定制</strong>（针对特定导师，1 封）¥300 &nbsp;·&nbsp;
+          <strong>CV 单项修改</strong>（2 轮）¥400 &nbsp;·&nbsp;
+          <strong>SOP/PS 单项修改</strong>（2 轮）¥600 &nbsp;·&nbsp;
+          <strong>RP 研究计划指导</strong> ¥500 &nbsp;·&nbsp;
+          <strong>面试模拟</strong>（1 次，1 小时）¥400 &nbsp;·&nbsp;
+          <strong>选校方案</strong>（含 Excel 分层表）¥500
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-header">
+          <div class="svc-name">B · 文书全套诊断</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥1,500</span>
+            <span class="svc-price-note">/ 套（CV + SOP + 套磁信）</span>
+          </div>
+        </div>
+        <div class="svc-audience">适合：文书已有初稿，需要专业视角提升质量的同学</div>
+        <div class="svc-desc">
+          对现有文书做全面诊断——逻辑断裂、表达平淡、与目标导师研究方向不匹配，给出可落地的修改建议。
+        </div>
+        <div class="svc-includes">
+          <strong>包含：</strong>CV + SOP/PS + 套磁信各 2 轮书面批注 · 修改逻辑说明文档 · 1 次 30 分钟视频沟通
+        </div>
+        <div class="svc-tags">
+          <span class="tag">CV 诊断</span>
+          <span class="tag">SOP / PS</span>
+          <span class="tag">套磁信</span>
+          <span class="tag">两轮修改</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-header">
+          <div class="svc-name">C · 文书季半程陪跑</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥4,000</span>
+            <span class="svc-price-note">起 / 人</span>
+          </div>
+        </div>
+        <div class="svc-audience">适合：选校已有想法，主要需要文书和套磁帮助的同学</div>
+        <div class="svc-desc">
+          专注文书季核心战场，帮你把每一份材料做到最好。
+        </div>
+        <div class="svc-includes">
+          <strong>包含：</strong>选校方案复核 · CV + SOP/PS 写作指导（3 轮修改）· 套磁信模板定制（3 封）· 面试模拟（1 次）· 微信答疑（文书季 3 个月内）
+        </div>
+        <div class="svc-tags">
+          <span class="tag">文书指导</span>
+          <span class="tag">套磁策略</span>
+          <span class="tag">面试模拟</span>
+          <span class="tag">3 个月跟进</span>
+        </div>
+      </div>
+
+      <div class="service-card featured">
+        <div class="featured-badge">最受欢迎</div>
+        <div class="svc-header">
+          <div class="svc-name">D · 全程陪跑</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥15,000</span>
+            <span class="svc-price-note">早鸟价 · 正式价 ¥20,000 · 限 5 名</span>
+          </div>
+        </div>
+        <div class="svc-audience">适合：想要全程托底、背景有短板需要整体策略的同学</div>
+        <div class="svc-desc">
+          从你的背景出发，规划完整申请路径。选校、文书、套磁、面试、offer 决策，每一步都有我在。
+        </div>
+        <div class="svc-includes">
+          <strong>包含：</strong>背景评估 · 选校方案（保底/冲刺分层）· CV + SOP/PS 全套写作指导（不限轮次）· RP 研究计划框架梳理 · 套磁信定制 + 发信节奏规划 · 推荐信策略建议 · 面试模拟（2 次）· Offer 比较与决策咨询 · 微信随时答疑（申请季全程）
+        </div>
+        <div class="svc-tags">
+          <span class="tag green">选校策略</span>
+          <span class="tag green">文书全套</span>
+          <span class="tag green">套磁指导</span>
+          <span class="tag green">面试准备</span>
+          <span class="tag green">全程答疑</span>
+          <span class="tag">美国 / 港校 / 欧洲</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scope-box">
+      <strong>服务范围说明：</strong>主要方向为 CS / AI，延伸覆盖 EE / ECE / DS / HCI 等近似方向。纯文商科、医学等与 CS 无交叉的方向暂不提供服务。如不确定是否适合，欢迎先免费私信说明背景，我会如实告知。
+    </div>
+
+    <div style="text-align:center;margin-top:28px;">
+      <a href="#contact" class="btn-primary">不确定选哪个？先来免费聊聊 →</a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <p class="section-label">咨询流程</p>
+    <p class="section-title">从第一条私信到入学，怎么合作</p>
+
+    <div class="process-list">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">免费初步沟通</div>
+          <div class="step-desc">私信告诉我你的大致背景（学校、方向、GPA、申请时间线），我会评估是否适合提供服务，并给出初步建议方向。无需付费。</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">确认服务类型 & 签约</div>
+          <div class="step-desc">根据你的需求确认服务套餐，发送服务协议（明确内容、交付标准、修改轮次），收取全款或 50% 定金后正式启动。</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">背景材料收集</div>
+          <div class="step-desc">填写背景问卷（成绩单、科研经历、目标方向、意向学校），提供现有文书初稿（如有）。我会在 48 小时内完成背景分析。</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">方案制定 & 执行</div>
+          <div class="step-desc">选校方案、文书写作指导、套磁策略按时间线推进。全程陪跑学员可随时微信答疑，重要节点安排视频沟通。</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">面试准备 & Offer 决策</div>
+          <div class="step-desc">收到面试邀请后针对性准备，模拟训练。收到 offer 后协助分析利弊，帮助做最终决策。</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">6</div>
+        <div>
+          <div class="step-title">入学前答疑（全程陪跑专属）</div>
+          <div class="step-desc">确认入学后，提供签证申请指导、入学准备建议、海外生活常见问题解答，直到你顺利出发。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <p class="section-label">学员案例</p>
+    <p class="section-title">真实结果，不是精英样本</p>
+    <p class="section-sub">持续更新中。第一批早鸟学员的结果将在 2027 年申请季结束后公开。</p>
+
+    <div class="case-placeholder">
+      <div class="case-placeholder-icon">🌱</div>
+      <div class="case-placeholder-text">
+        第一批学员招募中<br>
+        <span>如果你愿意以早鸟价换取案例背书资格，欢迎私信了解详情</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size:12px;color:var(--ink-light);margin-bottom:16px;font-weight:500;letter-spacing:0.06em;">顾问本人申请结果（可参考基准）</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="result-card">
+        <div class="result-tag">美国</div>
+        <div class="result-school">University of Notre Dame</div>
+        <div class="result-detail">CSE PhD · 全奖 · US News Top 20</div>
+      </div>
+      <div class="result-card">
+        <div class="result-tag">香港</div>
+        <div class="result-school">港大 / 港中文 / 港城大</div>
+        <div class="result-detail">CS/AI PhD · 全奖 · 三校 offer</div>
+      </div>
+      <div class="result-card" style="grid-column:1/-1;">
+        <div class="result-tag">背景</div>
+        <div class="result-school">均分 85 · 无 pub · 无暑研 · 无强推</div>
+        <div class="result-detail">全程 DIY · 约 20 个项目 · 26 Fall</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <p class="section-label">常见问题</p>
+
+    <div class="faq-item">
+      <div class="faq-q">我本科不是顶校、GPA 不高，适合找你咨询吗？</div>
+      <div class="faq-a">非常适合。我自己就是这样的情况——985 但非顶校，均分 85，无 pub 无暑研。申请成功的关键从来不只是 GPA，科研经历的包装方式、套磁策略的精准度、选校逻辑同样决定结果。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">硕士申请也可以找你吗？</div>
+      <div class="faq-a">可以。我有完整的 MPhil 申请经历（HKUST 全奖），对港校和部分欧洲硕士项目有深入了解。美国 Research Master 的申请逻辑和 PhD 相近，也可以提供指导。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">你能帮非 CS 方向的同学吗？</div>
+      <div class="faq-a">我的专精是 CS / AI，对这个领域的导师生态和申请节奏最了解。EE / ECE / DS / HCI 等近似方向可以咨询。如果不确定，欢迎先免费私信说明情况，我会直接告诉你我能提供多少有效帮助。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">保证录取吗？</div>
+      <div class="faq-a">不保证，也不会承诺。PhD 录取涉及太多不可控因素（导师是否招人、委员会偏好等），任何顾问声称"保录"都是不诚实的。我能保证的是：提供真实可靠的策略建议、认真修改每一份文书、全程有人陪你分析和决策。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">付款方式和退款规则是什么？</div>
+      <div class="faq-a">微信 / 支付宝转账。单次咨询全额预付；全程 / 半程陪跑启动时收 50% 定金，服务开始后不退定金，尾款按约定节点支付。如我本人原因无法履约，全额退款。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">咨询是线上还是线下？</div>
+      <div class="faq-a">全程线上，微信视频或腾讯会议均可。文书修改通过在线文档异步完成，方便你随时查看批注和修改记录。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">如何预约？</div>
+      <div class="faq-a">私信小红书账号「文艺极客AIGC」，简单说明你的背景和最想解决的问题，我会在 24 小时内回复。</div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="#contact" class="btn-primary">还有疑问？直接来聊，初次沟通免费 →</a>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section style="padding: 32px 0; border-bottom: none;">
+    <div class="disclaimer">
+      <strong>服务说明 · 风险提示：</strong>本服务为个人独立咨询，非留学中介机构，不代为提交申请材料。PhD 录取结果受多方因素影响（导师招生计划、委员会偏好、竞争情况等），咨询服务不构成录取承诺。所有建议基于顾问个人申请经历与了解，仅供参考。学员隐私信息严格保密，未经授权不用于任何宣传。
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="border-bottom:none; padding-top: 0;">
+    <div class="contact-box">
+      <h3>准备好了？来聊聊吧</h3>
+      <p>发一条私信，告诉我你的大致情况和最想解决的问题，<br>我会认真回复每一位。初步沟通免费，不强制推销。</p>
+      <div class="contact-methods">
+        <div class="contact-item">
+          <span>小红书私信</span>
+          文艺极客AIGC
+        </div>
+        <div class="contact-item">
+          <span>微信（扫码 / 搜索）</span>
+          GeekFocus
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    © 2026 · 文艺极客 · 个人独立咨询，非中介机构<br>
+    CS / AI PhD · MPhil · 全球混申 · 全程 DIY 陪跑
+  </div>
+
+</div>
+</body>
+</html>
