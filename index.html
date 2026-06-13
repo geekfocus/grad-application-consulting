@@ -37,6 +37,39 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 680px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    font-size: 13px; font-weight: 400;
+    color: var(--ink-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    background: none; border-top: none; border-left: none; border-right: none;
+    font-family: var(--sans);
+  }
+  .nav-tab:hover { color: var(--ink); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
   .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
   /* HERO */
@@ -63,11 +96,14 @@
     font-size: 14px; font-weight: 500; padding: 11px 24px;
     border-radius: var(--radius); text-decoration: none;
     letter-spacing: 0.02em; transition: background 0.15s;
+    cursor: pointer; border: none; font-family: var(--sans);
   }
   .btn-primary:hover { background: #235a42; }
   .btn-ghost {
     display: inline-block; color: var(--ink-mid); font-size: 13px;
     text-decoration: none; border-bottom: 1px solid var(--ink-faint); padding-bottom: 1px;
+    cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+    font-family: var(--sans);
   }
   .notice-banner {
     background: var(--gold-light); border: 1px solid #e8c97a;
@@ -224,41 +260,24 @@
     border-radius: var(--radius); padding: 12px 14px;
     display: flex; gap: 10px; align-items: flex-start;
   }
-  .fitcheck-card.fitcheck-no {
-    background: #fdf0f0; border-color: #e8c4c4;
-  }
+  .fitcheck-card.fitcheck-no { background: #fdf0f0; border-color: #e8c4c4; }
   .fitcheck-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
   .fitcheck-text { font-size: 12px; color: var(--ink-mid); line-height: 1.6; }
 
   /* CASES */
   .case-placeholder {
-    background: var(--bg-card);
-    border: 1.5px dashed var(--line);
-    border-radius: var(--radius);
-    padding: 28px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+    background: var(--bg-card); border: 1.5px dashed var(--line);
+    border-radius: var(--radius); padding: 28px 20px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
   }
   .case-placeholder-icon { font-size: 28px; }
-  .case-placeholder-text {
-    font-size: 14px; font-weight: 500;
-    color: var(--ink-mid); line-height: 1.8;
-  }
-  .case-placeholder-text span {
-    display: block; font-size: 12px;
-    font-weight: 300; color: var(--ink-light); margin-top: 4px;
-  }
+  .case-placeholder-text { font-size: 14px; font-weight: 500; color: var(--ink-mid); line-height: 1.8; }
+  .case-placeholder-text span { display: block; font-size: 12px; font-weight: 300; color: var(--ink-light); margin-top: 4px; }
   .result-card {
     background: var(--bg-card); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 14px 16px;
   }
-  .result-tag {
-    font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
-    color: var(--accent); text-transform: uppercase; margin-bottom: 4px;
-  }
+  .result-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 4px; }
   .result-school { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
   .result-detail { font-size: 11px; color: var(--ink-light); line-height: 1.5; }
 
@@ -275,10 +294,7 @@
     background: var(--accent-light); border: 1px solid #b7dccb;
     border-radius: var(--radius); padding: 28px 24px; text-align: center;
   }
-  .contact-box h3 {
-    font-family: var(--serif); font-size: 18px; font-weight: 600;
-    color: var(--ink); margin-bottom: 8px;
-  }
+  .contact-box h3 { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
   .contact-box p { font-size: 13px; color: var(--ink-mid); margin-bottom: 20px; line-height: 1.7; }
   .contact-methods { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
   .contact-item {
@@ -289,12 +305,50 @@
   .contact-item span { display: block; font-size: 11px; color: var(--ink-light); font-weight: 300; margin-bottom: 3px; }
 
   /* FOOTER */
-  .footer {
-    padding: 32px 0; text-align: center;
-    font-size: 12px; color: var(--ink-faint); line-height: 1.9;
-  }
+  .footer { padding: 32px 0; text-align: center; font-size: 12px; color: var(--ink-faint); line-height: 1.9; }
 
   .divider { height: 1px; background: var(--line); margin: 24px 0; }
+
+  /* ── 服务详情页专用样式 ── */
+  .svc-detail-page { padding: 48px 0; }
+  .svc-detail-page .page-header { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .svc-detail-page .page-header p { font-size: 13px; color: var(--ink-light); line-height: 1.7; margin-top: 8px; }
+
+  .detail-block {
+    border-bottom: 1px solid var(--line); padding: 32px 0;
+  }
+  .detail-block:last-of-type { border-bottom: none; }
+
+  .detail-num {
+    font-family: var(--serif); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; color: var(--accent-mid); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .detail-title {
+    font-family: var(--serif); font-size: 18px; font-weight: 600;
+    color: var(--ink); margin-bottom: 6px; line-height: 1.4;
+  }
+  .detail-sub {
+    font-size: 12px; color: var(--ink-light); margin-bottom: 16px; line-height: 1.6;
+  }
+  .detail-items {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .detail-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 14px;
+    font-size: 13px; color: var(--ink-mid); line-height: 1.6;
+  }
+  .detail-item-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .detail-item-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+
+  .detail-note {
+    margin-top: 12px;
+    background: var(--accent-light); border: 1px solid #b7dccb;
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 12px; color: var(--accent); line-height: 1.7;
+  }
 
   @media (max-width: 520px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -305,10 +359,27 @@
     .hero { padding: 40px 0 32px; }
     .compare-table { font-size: 12px; }
     .compare-table th, .compare-table td { padding: 8px 8px; }
+    .fitcheck-grid { grid-template-columns: 1fr; }
+    .nav-tab { padding: 12px 12px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="switchPage('home', this)">首页</button>
+    <button class="nav-tab" onclick="switchPage('services-detail', this)">服务内容</button>
+    <button class="nav-tab" onclick="switchPage('pricing', this)">定价</button>
+    <button class="nav-tab" onclick="switchPage('cases', this)">学员案例</button>
+    <button class="nav-tab" onclick="switchPage('faq', this)">FAQ</button>
+    <button class="nav-tab" onclick="switchPage('contact', this)">联系我</button>
+  </div>
+</nav>
+
+<!-- ════════ PAGE: HOME ════════ -->
+<div class="page active" id="page-home">
 <div class="container">
 
   <!-- HERO -->
@@ -322,35 +393,23 @@
     </p>
     <p class="hero-sub">覆盖美国 Top 10–50 · 香港五所 · 欧洲岗位制 · 中东高校</p>
     <div class="cta-row">
-      <a href="#contact" class="btn-primary">预约咨询 →</a>
-      <a href="#services" class="btn-ghost">查看服务与定价</a>
+      <button class="btn-primary" onclick="switchPage('contact', document.querySelector('[onclick*=contact]'))">预约咨询 →</button>
+      <button class="btn-ghost" onclick="switchPage('pricing', document.querySelectorAll('.nav-tab')[2])">查看服务与定价</button>
     </div>
     <div class="notice-banner">
       <span class="notice-icon">🕐</span>
       <div>
-        <strong>2026 申请季早鸟优惠开放中</strong>——全程陪跑早鸟价 ¥15,000（正式价 ¥20,000），前 5 位学员专享，同时获得真实案例背书资格。名额有限，先到先得。
+        <strong>2026 申请季学员招募中</strong>——半 DIY ¥20,000 · 全包 ¥50,000（保结果）。前 3–5 位早鸟学员可享优惠价，同时获得真实案例背书资格。名额有限，先到先得。
       </div>
     </div>
   </div>
 
   <!-- STATS -->
   <div class="stats">
-    <div class="stat">
-      <div class="stat-num">985</div>
-      <div class="stat-label">厦大本科<br>计算机 + 经济双学位</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">全奖</div>
-      <div class="stat-label">港科大 MPhil<br>红鸟挑战营入选</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">Top 20</div>
-      <div class="stat-label">美国博士全额奖<br>26 Fall 入学</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">DIY</div>
-      <div class="stat-label">全程无中介<br>真实可复刻</div>
-    </div>
+    <div class="stat"><div class="stat-num">985</div><div class="stat-label">厦大本科<br>计算机 + 经济双学位</div></div>
+    <div class="stat"><div class="stat-num">全奖</div><div class="stat-label">港科大 MPhil<br>红鸟挑战营入选</div></div>
+    <div class="stat"><div class="stat-num">Top 20</div><div class="stat-label">美国博士全额奖<br>26 Fall 入学</div></div>
+    <div class="stat"><div class="stat-num">DIY</div><div class="stat-label">全程无中介<br>真实可复刻</div></div>
   </div>
 
   <!-- BACKGROUND -->
@@ -358,7 +417,6 @@
     <p class="section-label">我的背景</p>
     <p class="section-title">三段完整申请，每一步第一手经验</p>
     <p class="section-sub">申请没有捷径，但有方法——这是我一路走来真实验证过的路线。</p>
-
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -385,23 +443,12 @@
         <div class="tl-note">2025–26 申请季刚结束，套磁策略、SOP 写作逻辑、面试信息极为新鲜。申请约 20 个项目，收到美国 Top 20 + 港三等多个 offer</div>
       </div>
     </div>
-
     <div class="divider"></div>
-
     <p style="font-size:12px;color:var(--ink-light);margin-bottom:12px;font-weight:500;letter-spacing:0.06em;">部分 Offer 情况（26 Fall）</p>
     <div class="offer-list">
-      <div class="offer-row">
-        <div class="offer-dot"></div>
-        <div><span class="offer-school">University of Notre Dame</span> <span class="offer-detail">· CSE PhD · 全奖 · US News Top 20</span></div>
-      </div>
-      <div class="offer-row">
-        <div class="offer-dot"></div>
-        <div><span class="offer-school">香港三所高校</span> <span class="offer-detail">· CS/AI PhD · 全奖 · 含港大 / 港中文 / 港城大</span></div>
-      </div>
-      <div class="offer-row">
-        <div class="offer-dot" style="background:var(--ink-faint);"></div>
-        <div style="color:var(--ink-light);font-size:12px;">其余 offer 细节可咨询时进一步了解</div>
-      </div>
+      <div class="offer-row"><div class="offer-dot"></div><div><span class="offer-school">University of Notre Dame</span> <span class="offer-detail">· CSE PhD · 全奖 · US News Top 20</span></div></div>
+      <div class="offer-row"><div class="offer-dot"></div><div><span class="offer-school">香港三所高校</span> <span class="offer-detail">· CS/AI PhD · 全奖 · 含港大 / 港中文 / 港城大</span></div></div>
+      <div class="offer-row"><div class="offer-dot" style="background:var(--ink-faint);"></div><div style="color:var(--ink-light);font-size:12px;">其余 offer 细节可咨询时进一步了解</div></div>
     </div>
   </section>
 
@@ -410,65 +457,19 @@
     <p class="section-label">为什么找我咨询</p>
     <p class="section-title">不是精英顾问，是走过同一条路的人</p>
     <p class="section-sub">市面上有很多顶配背景的顾问。我的差异化不是比他们更"牛"，而是比他们更懂你的处境。</p>
-
     <div class="adv-grid">
-      <div class="adv-card">
-        <span class="adv-icon">🪴</span>
-        <div class="adv-title">三无逆袭，真实可参考</div>
-        <div class="adv-desc">无 pub、无暑研、无强推，均分 85，最终拿到 Top 20 全奖。知道哪些短板真的影响申请，哪些只是焦虑</div>
-      </div>
-      <div class="adv-card">
-        <span class="adv-icon">🔬</span>
-        <div class="adv-title">CS / AI 方向专精</div>
-        <div class="adv-desc">真正做过科研（CV / NLP / HCI），理解导师生态、子方向冷热、套磁的技术门槛，不是泛泛而谈</div>
-      </div>
-      <div class="adv-card">
-        <span class="adv-icon">🗓️</span>
-        <div class="adv-title">26 Fall 第一手信息</div>
-        <div class="adv-desc">申请季刚结束，各校套磁回复率、面试风格、招生偏好都是最新经验，不是几年前的过时信息</div>
-      </div>
+      <div class="adv-card"><span class="adv-icon">🪴</span><div class="adv-title">三无逆袭，真实可参考</div><div class="adv-desc">无 pub、无暑研、无强推，均分 85，最终拿到 Top 20 全奖。知道哪些短板真的影响申请，哪些只是焦虑</div></div>
+      <div class="adv-card"><span class="adv-icon">🔬</span><div class="adv-title">CS / AI 方向专精</div><div class="adv-desc">真正做过科研（CV / NLP / HCI），理解导师生态、子方向冷热、套磁的技术门槛，不是泛泛而谈</div></div>
+      <div class="adv-card"><span class="adv-icon">🗓️</span><div class="adv-title">26 Fall 第一手信息</div><div class="adv-desc">申请季刚结束，各校套磁回复率、面试风格、招生偏好都是最新经验，不是几年前的过时信息</div></div>
     </div>
-
     <table class="compare-table">
-      <thead>
-        <tr>
-          <th>对比维度</th>
-          <th>大型中介</th>
-          <th>学霸顾问</th>
-          <th>我</th>
-        </tr>
-      </thead>
+      <thead><tr><th>对比维度</th><th>大型中介</th><th>学霸顾问</th><th>我</th></tr></thead>
       <tbody>
-        <tr>
-          <td>背景透明度</td>
-          <td>外包，顾问背景模糊</td>
-          <td>顶配简历，难以复刻</td>
-          <td class="me">三无真实案例，可参考</td>
-        </tr>
-        <tr>
-          <td>申请信息时效</td>
-          <td>更新慢</td>
-          <td>因人而异</td>
-          <td class="me">26 Fall 第一手，极新</td>
-        </tr>
-        <tr>
-          <td>技术方向理解</td>
-          <td>弱</td>
-          <td>不稳定</td>
-          <td class="me">CS/AI 科研背景扎实</td>
-        </tr>
-        <tr>
-          <td>价格</td>
-          <td>3–15 万</td>
-          <td>偏高</td>
-          <td class="me">学生可承受，透明定价</td>
-        </tr>
-        <tr>
-          <td>服务立场</td>
-          <td>机构利益优先</td>
-          <td>个人秀成分多</td>
-          <td class="me">站在申请者一侧</td>
-        </tr>
+        <tr><td>背景透明度</td><td>外包，顾问背景模糊</td><td>顶配简历，难以复刻</td><td class="me">三无真实案例，可参考</td></tr>
+        <tr><td>申请信息时效</td><td>更新慢</td><td>因人而异</td><td class="me">26 Fall 第一手，极新</td></tr>
+        <tr><td>技术方向理解</td><td>弱</td><td>不稳定</td><td class="me">CS/AI 科研背景扎实</td></tr>
+        <tr><td>价格</td><td>3–15 万</td><td>偏高</td><td class="me">半 DIY ¥2 万 · 全包 ¥5 万，透明定价</td></tr>
+        <tr><td>服务立场</td><td>机构利益优先</td><td>个人秀成分多</td><td class="me">站在申请者一侧</td></tr>
       </tbody>
     </table>
   </section>
@@ -478,156 +479,359 @@
     <p class="section-label">适合我吗</p>
     <p class="section-title">对号入座，看看我们是否聊得来</p>
     <div class="fitcheck-grid">
-      <div class="fitcheck-card">
-        <span class="fitcheck-icon">✅</span>
-        <div class="fitcheck-text">985 / 211 / 海外本科，申 CS / AI 方向 PhD 或 MPhil</div>
-      </div>
-      <div class="fitcheck-card">
-        <span class="fitcheck-icon">✅</span>
-        <div class="fitcheck-text">背景有短板：GPA 不高、无 pub、无暑研，不知道如何突破</div>
-      </div>
-      <div class="fitcheck-card">
-        <span class="fitcheck-icon">✅</span>
-        <div class="fitcheck-text">全球混申，不确定美国 / 港校 / 欧洲怎么组合策略</div>
-      </div>
-      <div class="fitcheck-card">
-        <span class="fitcheck-icon">✅</span>
-        <div class="fitcheck-text">想全程 DIY，但需要有人帮你把关关键节点</div>
-      </div>
-      <div class="fitcheck-card fitcheck-no">
-        <span class="fitcheck-icon">❌</span>
-        <div class="fitcheck-text">纯文商科、医学等与 CS 无交叉的方向（暂不提供服务）</div>
-      </div>
-      <div class="fitcheck-card fitcheck-no">
-        <span class="fitcheck-icon">❌</span>
-        <div class="fitcheck-text">只想找人代写文书、不参与修改过程（我不代写，只指导）</div>
-      </div>
+      <div class="fitcheck-card"><span class="fitcheck-icon">✅</span><div class="fitcheck-text">985 / 211 / 海外本科，申 CS / AI 方向 PhD 或 MPhil</div></div>
+      <div class="fitcheck-card"><span class="fitcheck-icon">✅</span><div class="fitcheck-text">背景有短板：GPA 不高、无 pub、无暑研，不知道如何突破</div></div>
+      <div class="fitcheck-card"><span class="fitcheck-icon">✅</span><div class="fitcheck-text">全球混申，不确定美国 / 港校 / 欧洲怎么组合策略</div></div>
+      <div class="fitcheck-card"><span class="fitcheck-icon">✅</span><div class="fitcheck-text">想全程 DIY，但需要有人帮你把关关键节点</div></div>
+      <div class="fitcheck-card fitcheck-no"><span class="fitcheck-icon">❌</span><div class="fitcheck-text">纯文商科、医学等与 CS 无交叉的方向（暂不提供服务）</div></div>
+      <div class="fitcheck-card fitcheck-no"><span class="fitcheck-icon">❌</span><div class="fitcheck-text">只想找人代写文书、不参与修改过程（我不代写，只指导）</div></div>
     </div>
     <p style="font-size:12px;color:var(--ink-light);margin-top:16px;line-height:1.7;">不确定是否适合？先免费私信说明背景，我会直接告诉你。</p>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services">
+  <div class="footer">
+    © 2026 · 文艺极客 · 个人独立咨询，非中介机构<br>
+    CS / AI PhD · MPhil · 全球混申 · 全程 DIY 陪跑
+  </div>
+</div>
+</div>
+
+<!-- ════════ PAGE: 服务内容 ════════ -->
+<div class="page" id="page-services-detail">
+<div class="container">
+<div class="svc-detail-page">
+
+  <div class="page-header">
+    <p class="section-label">服务内容</p>
+    <p class="section-title">我能帮你做什么</p>
+    <p>从研究方向分析到 Offer 决策，以下是每个服务模块的具体内容说明。</p>
+  </div>
+
+  <!-- 1. 导师与研究方向分析 -->
+  <div class="detail-block">
+    <div class="detail-num">01 · 核心服务</div>
+    <div class="detail-title">导师 & 研究方向分析</div>
+    <div class="detail-sub">适合还没确定研究方向、不知道如何找对导师的同学</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">🔭</span>
+        <div class="detail-item-text">
+          <strong>研究方向定位</strong>
+          根据你的背景和兴趣，分析 CS / AI 子方向（CV、NLP、HCI、Systems 等）的冷热程度与竞争格局，帮你找到最有竞争力的切入点
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">👨‍🔬</span>
+        <div class="detail-item-text">
+          <strong>目标导师筛选</strong>
+          分析目标院校的导师招生状态、研究方向匹配度、近年发表动态，帮你圈定值得重点套磁的名单
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">📊</span>
+        <div class="detail-item-text">
+          <strong>Research Gap 梳理</strong>
+          结合你的背景，帮你找到现有研究的空白点，为 SOP 和套磁信提供有说服力的学术切入角度
+        </div>
+      </div>
+    </div>
+    <div class="detail-note">💡 这一步做好，后续的套磁和文书会顺很多。建议在申请季开始 4–6 个月前完成。</div>
+  </div>
+
+  <!-- 2. 套磁信定制 -->
+  <div class="detail-block">
+    <div class="detail-num">02 · 核心服务</div>
+    <div class="detail-title">套磁信定制 & 策略</div>
+    <div class="detail-sub">套磁是 PhD 申请最被低估的环节，也是普通背景逆袭的核心杠杆</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">✉️</span>
+        <div class="detail-item-text">
+          <strong>针对性套磁信写作</strong>
+          根据目标导师的具体研究方向和近期论文，定制每一封套磁信，而不是群发模板
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">📅</span>
+        <div class="detail-item-text">
+          <strong>发信节奏规划</strong>
+          什么时候发第一封、什么时候跟进、收到回复怎么接——完整的时间线策略
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">📈</span>
+        <div class="detail-item-text">
+          <strong>回复率分析</strong>
+          基于 26 Fall 真实经验，哪些学校导师更倾向回复、哪些方向套磁成功率更高
+        </div>
+      </div>
+    </div>
+    <div class="detail-note">💡 我本人套磁拿到圣母 Top 20 全奖，这是我经验最扎实的模块之一。</div>
+  </div>
+
+  <!-- 3. 文书写作指导 -->
+  <div class="detail-block">
+    <div class="detail-num">03 · 核心服务</div>
+    <div class="detail-title">文书写作指导</div>
+    <div class="detail-sub">CV、SOP/PS、推荐信策略——我指导，你写，一起打磨</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">📄</span>
+        <div class="detail-item-text">
+          <strong>CV（学术简历）</strong>
+          从结构到措辞全面优化，突出科研经历的技术深度，弱化 GPA 等短板的视觉权重
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">📝</span>
+        <div class="detail-item-text">
+          <strong>SOP / PS（个人陈述）</strong>
+          帮你梳理故事主线，从"我做了什么"升级为"我为什么研究这个、我能贡献什么"，让 SOP 真正有说服力
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🔄</span>
+        <div class="detail-item-text">
+          <strong>多轮书面批注 + 修改</strong>
+          每轮给出具体可落地的修改建议，附修改逻辑说明，帮你真正理解为什么要这样改
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🏫</span>
+        <div class="detail-item-text">
+          <strong>针对学校的 SOP 定制</strong>
+          不同学校侧重不同，帮你在核心 SOP 基础上做针对性调整
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🤝</span>
+        <div class="detail-item-text">
+          <strong>推荐信策略建议</strong>
+          怎么选推荐人、怎么 briefing 推荐人、哪类描述对 PhD 录取最有效
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 选校策略 -->
+  <div class="detail-block">
+    <div class="detail-num">04 · 核心服务</div>
+    <div class="detail-title">选校策略 & 方案</div>
+    <div class="detail-sub">选校不是越多越好，也不是越顶越好，而是要找到最优组合</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">🗺️</span>
+        <div class="detail-item-text">
+          <strong>保底 / 冲刺 / 目标分层选校</strong>
+          根据你的背景，合理分配申请资源，避免全部冲刺或全部保底的极端策略
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🌏</span>
+        <div class="detail-item-text">
+          <strong>多地区组合策略</strong>
+          美国 + 港校 + 欧洲怎么搭配申请时间线，不互相干扰、最大化 offer 数量
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">📋</span>
+        <div class="detail-item-text">
+          <strong>Excel 选校分层表</strong>
+          整理成可视化表格，清楚展示每所学校的 DDL、导师名单、历年录取数据
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. RP 研究计划 -->
+  <div class="detail-block">
+    <div class="detail-num">05 · 核心服务</div>
+    <div class="detail-title">RP 研究计划指导</div>
+    <div class="detail-sub">港校和部分欧洲项目要求提交 Research Proposal，这是许多同学的盲区</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">🧩</span>
+        <div class="detail-item-text">
+          <strong>框架搭建</strong>
+          帮你梳理 RP 的结构：Research Question、Literature Review、Methodology、Expected Contribution，每块应该写什么、写多少
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🔍</span>
+        <div class="detail-item-text">
+          <strong>学术可行性把关</strong>
+          确保你的 Research Question 有意义、有新意、且在 PhD 阶段实际可执行
+        </div>
+      </div>
+    </div>
+    <div class="detail-note">💡 港科大 MPhil 申请我有完整经历，对港校 RP 的偏好和评审逻辑有直接了解。</div>
+  </div>
+
+  <!-- 6. 面试培训 -->
+  <div class="detail-block">
+    <div class="detail-num">06 · 核心服务</div>
+    <div class="detail-title">面试培训 & 模拟</div>
+    <div class="detail-sub">收到面试邀请不等于稳了，准备充分才能把握住</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">🎤</span>
+        <div class="detail-item-text">
+          <strong>模拟面试（1v1）</strong>
+          模拟真实面试场景，涵盖自我介绍、科研经历讲解、Motivation 问答、技术问题应对
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🌍</span>
+        <div class="detail-item-text">
+          <strong>不同地区风格针对</strong>
+          美国 / 港校 / 欧洲的面试风格有明显差异，针对你的目标学校做专项准备
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">💬</span>
+        <div class="detail-item-text">
+          <strong>面试后复盘</strong>
+          模拟结束后给出详细反馈，指出表达习惯、逻辑结构、技术回答中需要改进的地方
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Offer 决策 -->
+  <div class="detail-block">
+    <div class="detail-num">07 · 附加服务</div>
+    <div class="detail-title">Offer 比较 & 决策咨询</div>
+    <div class="detail-sub">拿到多个 offer 后，反而不知道选哪个——这比想象中常见</div>
+    <div class="detail-items">
+      <div class="detail-item">
+        <span class="detail-item-icon">⚖️</span>
+        <div class="detail-item-text">
+          <strong>多维度 offer 对比</strong>
+          奖学金金额、导师背景、课题组氛围、毕业去向、城市生活成本——帮你理清真正重要的因素
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-item-icon">🎯</span>
+        <div class="detail-item-text">
+          <strong>个人目标匹配分析</strong>
+          根据你的长期规划（学术 vs 工业、留海外 vs 回国），给出基于实际情况的参考建议
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding: 32px 0;">
+    <button class="btn-primary" onclick="switchPage('pricing', document.querySelectorAll('.nav-tab')[2])">查看定价方案（半 DIY ¥2 万 · 全包 ¥5 万）→</button>
+  </div>
+
+  <div class="footer">
+    © 2026 · 文艺极客 · 个人独立咨询，非中介机构
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ════════ PAGE: 定价 ════════ -->
+<div class="page" id="page-pricing">
+<div class="container">
+  <section style="padding-top: 48px;">
     <p class="section-label">服务与定价</p>
     <p class="section-title">按需选择，不强制捆绑</p>
     <p class="section-sub">从单次问诊到全程陪跑，找到适合你的方式。所有服务均为个人独立完成，不转包。</p>
 
     <div class="service-stack">
 
+      <!-- 半DIY -->
       <div class="service-card">
         <div class="svc-header">
-          <div class="svc-name">A · 单次深度咨询</div>
+          <div class="svc-name">半 DIY 陪跑</div>
           <div class="svc-price-block">
-            <span class="svc-price">¥350</span>
-            <span class="svc-price-note">/ 小时 · 2 小时起预约</span>
+            <span class="svc-price">¥20,000</span>
+            <span class="svc-price-note">1 个专业 · 10 所学校 · 不保结果</span>
           </div>
         </div>
-        <div class="svc-audience">适合：有具体问题、自己能搞定执行、只需要方向指引的同学</div>
-        <div class="svc-desc">
-          深聊一个核心问题：我的背景能申哪些学校？套磁怎么写？要不要先读 MPhil 再申 PhD？港校还是美国？
-        </div>
+        <div class="svc-audience">适合：有一定执行力、想全程参与但需要专业把关的同学</div>
+        <div class="svc-desc">学生主导执行，我负责策略指导与全程审核。网申表格由你自行填写，我检查把关。申请季全程微信答疑，重要节点视频沟通。</div>
         <div class="svc-includes">
-          <strong>包含：</strong>视频深度沟通 · 会后策略备忘录（500 字内）
+          <strong>申请地区：</strong>美国 · 加拿大 · 新加坡 · 欧洲（瑞士/荷兰）· 英国 · 澳大利亚 · 香港<br>
+          <strong>服务内容：</strong>专业方向探索 · 择校择导全程指导 · 院校信息 &amp; 历年录取数据 · 套磁教授筛选 &amp; 策略 · 文书头脑风暴 &amp; 框架建议 · CV / PS / 套磁信写作指导（多轮修改）· 文书专业度 &amp; 语言逻辑润色 · 推荐信框架建议 · 面试辅导 · Offer 选择建议 · 网申材料审核（学生自填）
         </div>
         <div class="svc-tags">
-          <span class="tag">背景评估</span>
-          <span class="tag">选校建议</span>
-          <span class="tag">方向规划</span>
-          <span class="tag">答疑解惑</span>
+          <span class="tag">10 所学校</span><span class="tag">择校择导</span><span class="tag">文书全套</span><span class="tag">套磁策略</span><span class="tag">面试辅导</span><span class="tag">不保结果</span><span class="tag">不涉及退费</span>
         </div>
       </div>
 
-      <div class="service-card">
-        <div class="svc-header">
-          <div class="svc-name">单项服务（按需选购）</div>
-          <div class="svc-price-block">
-            <span class="svc-price">¥300</span>
-            <span class="svc-price-note">起 / 项</span>
-          </div>
-        </div>
-        <div class="svc-desc">不需要全套服务？可以单独选购以下任意一项。</div>
-        <div class="svc-includes">
-          <strong>套磁信定制</strong>（针对特定导师，1 封）¥300 &nbsp;·&nbsp;
-          <strong>CV 单项修改</strong>（2 轮）¥400 &nbsp;·&nbsp;
-          <strong>SOP/PS 单项修改</strong>（2 轮）¥600 &nbsp;·&nbsp;
-          <strong>RP 研究计划指导</strong> ¥500 &nbsp;·&nbsp;
-          <strong>面试模拟</strong>（1 次，1 小时）¥400 &nbsp;·&nbsp;
-          <strong>选校方案</strong>（含 Excel 分层表）¥500
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-header">
-          <div class="svc-name">B · 文书全套诊断</div>
-          <div class="svc-price-block">
-            <span class="svc-price">¥1,500</span>
-            <span class="svc-price-note">/ 套（CV + SOP + 套磁信）</span>
-          </div>
-        </div>
-        <div class="svc-audience">适合：文书已有初稿，需要专业视角提升质量的同学</div>
-        <div class="svc-desc">
-          对现有文书做全面诊断——逻辑断裂、表达平淡、与目标导师研究方向不匹配，给出可落地的修改建议。
-        </div>
-        <div class="svc-includes">
-          <strong>包含：</strong>CV + SOP/PS + 套磁信各 2 轮书面批注 · 修改逻辑说明文档 · 1 次 30 分钟视频沟通
-        </div>
-        <div class="svc-tags">
-          <span class="tag">CV 诊断</span>
-          <span class="tag">SOP / PS</span>
-          <span class="tag">套磁信</span>
-          <span class="tag">两轮修改</span>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="svc-header">
-          <div class="svc-name">C · 文书季半程陪跑</div>
-          <div class="svc-price-block">
-            <span class="svc-price">¥4,000</span>
-            <span class="svc-price-note">起 / 人</span>
-          </div>
-        </div>
-        <div class="svc-audience">适合：选校已有想法，主要需要文书和套磁帮助的同学</div>
-        <div class="svc-desc">
-          专注文书季核心战场，帮你把每一份材料做到最好。
-        </div>
-        <div class="svc-includes">
-          <strong>包含：</strong>选校方案复核 · CV + SOP/PS 写作指导（3 轮修改）· 套磁信模板定制（3 封）· 面试模拟（1 次）· 微信答疑（文书季 3 个月内）
-        </div>
-        <div class="svc-tags">
-          <span class="tag">文书指导</span>
-          <span class="tag">套磁策略</span>
-          <span class="tag">面试模拟</span>
-          <span class="tag">3 个月跟进</span>
-        </div>
-      </div>
-
+      <!-- 全包 -->
       <div class="service-card featured">
         <div class="featured-badge">最受欢迎</div>
         <div class="svc-header">
-          <div class="svc-name">D · 全程陪跑</div>
+          <div class="svc-name">全包服务</div>
           <div class="svc-price-block">
-            <span class="svc-price">¥15,000</span>
-            <span class="svc-price-note">早鸟价 · 正式价 ¥20,000 · 限 5 名</span>
+            <span class="svc-price">¥50,000</span>
+            <span class="svc-price-note">1 个专业 · 15 所学校 · 保结果</span>
           </div>
         </div>
-        <div class="svc-audience">适合：想要全程托底、背景有短板需要整体策略的同学</div>
-        <div class="svc-desc">
-          从你的背景出发，规划完整申请路径。选校、文书、套磁、面试、offer 决策，每一步都有我在。
-        </div>
+        <div class="svc-audience">适合：想要彻底托底、全程有人主导推进、背景有短板需要整体策略的同学</div>
+        <div class="svc-desc">从背景分析到 Offer 决策，每一个环节我全程主导。申请不上扣 ¥30,000，剩余全退。</div>
         <div class="svc-includes">
-          <strong>包含：</strong>背景评估 · 选校方案（保底/冲刺分层）· CV + SOP/PS 全套写作指导（不限轮次）· RP 研究计划框架梳理 · 套磁信定制 + 发信节奏规划 · 推荐信策略建议 · 面试模拟（2 次）· Offer 比较与决策咨询 · 微信随时答疑（申请季全程）
+          <strong>申请地区：</strong>美国 · 加拿大 · 新加坡 · 欧洲（瑞士/荷兰）· 英国 · 澳大利亚 · 香港<br>
+          <strong>服务内容：</strong>专业方向深度探索 · 择校择导全程主导 · 科研/实习资源筛选 &amp; 内推信息 · 院校申请信息 &amp; 过往录取数据 · 套磁教授筛选 &amp; 策略 · 文书头脑风暴 &amp; 框架搭建 · 文书初稿撰写 · CV / PS / SOP 专业度润色（逐字逐句）· 文书语言逻辑润色 · 推荐信写作框架 · 面试辅导 · Offer 选择确认 · 托福/雅思 &amp; GRE 院校送分协助 · 网申信息填写全程负责
         </div>
         <div class="svc-tags">
-          <span class="tag green">选校策略</span>
-          <span class="tag green">文书全套</span>
-          <span class="tag green">套磁指导</span>
-          <span class="tag green">面试准备</span>
-          <span class="tag green">全程答疑</span>
-          <span class="tag">美国 / 港校 / 欧洲</span>
+          <span class="tag green">15 所学校</span><span class="tag green">文书初稿撰写</span><span class="tag green">择校择导</span><span class="tag green">套磁全程</span><span class="tag green">面试辅导</span><span class="tag green">网申填写</span><span class="tag green">保结果</span>
+        </div>
+        <div style="margin-top:12px;background:var(--gold-light);border:1px solid #e8c97a;border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5c10;line-height:1.7;">
+          <strong>保障说明：</strong>申请不上时扣 ¥30,000 服务费，剩余 ¥20,000 全额退款。详见服务协议条款。
         </div>
       </div>
 
+      <!-- 单次咨询 -->
+      <div class="service-card">
+        <div class="svc-header">
+          <div class="svc-name">单次深度咨询</div>
+          <div class="svc-price-block">
+            <span class="svc-price">¥400</span>
+            <span class="svc-price-note">/ 小时 · 1 小时起</span>
+          </div>
+        </div>
+        <div class="svc-audience">适合：有具体问题、自己能搞定执行、只需方向指引的同学</div>
+        <div class="svc-desc">深聊一个核心问题：背景能申哪些学校？套磁怎么写？要不要先读 MPhil？港校还是美国？</div>
+        <div class="svc-includes"><strong>包含：</strong>视频深度沟通 · 会后策略备忘录（500 字内）</div>
+        <div class="svc-tags"><span class="tag">背景评估</span><span class="tag">选校建议</span><span class="tag">方向规划</span><span class="tag">答疑解惑</span></div>
+      </div>
+
+    </div>
+
+    <!-- 单项服务价格表 -->
+    <div style="margin-top:32px;">
+      <p class="section-label" style="margin-bottom:16px;">单项服务（按需选购）</p>
+      <p style="font-size:13px;color:var(--ink-light);margin-bottom:18px;line-height:1.7;">不需要全套服务？可以单独购买以下任意一项，灵活组合。</p>
+      <table class="compare-table" style="margin-top:0;">
+        <thead>
+          <tr>
+            <th style="width:36%">服务项目</th>
+            <th style="width:22%">价格</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>博导专业分析</td><td class="me">¥3,000</td><td>研究方向定位 + 目标导师筛选建议</td></tr>
+          <tr><td>择校方案</td><td class="me">¥5,000</td><td>保底/冲刺分层选校，含 Excel 可视化表格</td></tr>
+          <tr><td>查教授 + 套磁全套</td><td class="me">¥6,800 – ¥9,800</td><td>筛选目标导师 + 套磁信撰写 + 发信节奏规划</td></tr>
+          <tr><td>简历（CV）写作</td><td class="me">¥1,000</td><td>从零开始写作，含 2 轮修改</td></tr>
+          <tr><td>简历（CV）修改</td><td class="me">¥600</td><td>现有简历优化，含 2 轮批注修改</td></tr>
+          <tr><td>推荐信写作</td><td class="me">¥500 / 封</td><td>框架 + 代写草稿，供推荐人确认</td></tr>
+          <tr><td>PS 头脑风暴</td><td class="me">¥500</td><td>1 次 1h 视频，梳理故事主线与选题角度</td></tr>
+          <tr><td>PS / SOP 写作（从零）</td><td class="me">¥2,000</td><td>含头脑风暴 + 初稿撰写 + 3 轮修改</td></tr>
+          <tr><td>PS / SOP 修改</td><td class="me">¥2,000</td><td>现有文书深度修改，含逻辑重构 + 2 轮批注</td></tr>
+          <tr><td>按学校定制 PS 修改</td><td class="me">¥1,200 / 所</td><td>在核心 PS 基础上针对特定学校做定制调整</td></tr>
+          <tr><td>RP 研究计划辅导</td><td class="me">¥6,000</td><td>框架搭建 + 学术可行性把关 + 2 轮修改（约 3–4h）</td></tr>
+          <tr><td>网申填写协助</td><td class="me">¥500 / 所</td><td>协助填写网申表格并审核材料完整性</td></tr>
+          <tr><td>面试培训</td><td class="me">¥1,500</td><td>1v1 模拟面试 + 详细反馈复盘（约 1.5h）</td></tr>
+          <tr><td>学校对比 &amp; 确定</td><td class="me">¥800</td><td>多 offer 横向对比分析 + 个人目标匹配建议</td></tr>
+          <tr><td>签证辅导（美国）</td><td class="me">¥5,000</td><td>签证准备指导（仅咨询建议，不代为办理）</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="scope-box">
@@ -635,165 +839,111 @@
     </div>
 
     <div style="text-align:center;margin-top:28px;">
-      <a href="#contact" class="btn-primary">不确定选哪个？先来免费聊聊 →</a>
+      <button class="btn-primary" onclick="switchPage('contact', document.querySelectorAll('.nav-tab')[5])">不确定选哪个？先来免费聊聊 →</button>
     </div>
   </section>
 
   <!-- PROCESS -->
-  <section id="process">
+  <section>
     <p class="section-label">咨询流程</p>
     <p class="section-title">从第一条私信到入学，怎么合作</p>
-
     <div class="process-list">
-      <div class="process-step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">免费初步沟通</div>
-          <div class="step-desc">私信告诉我你的大致背景（学校、方向、GPA、申请时间线），我会评估是否适合提供服务，并给出初步建议方向。无需付费。</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">确认服务类型 & 签约</div>
-          <div class="step-desc">根据你的需求确认服务套餐，发送服务协议（明确内容、交付标准、修改轮次），收取全款或 50% 定金后正式启动。</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">背景材料收集</div>
-          <div class="step-desc">填写背景问卷（成绩单、科研经历、目标方向、意向学校），提供现有文书初稿（如有）。我会在 48 小时内完成背景分析。</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-title">方案制定 & 执行</div>
-          <div class="step-desc">选校方案、文书写作指导、套磁策略按时间线推进。全程陪跑学员可随时微信答疑，重要节点安排视频沟通。</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">5</div>
-        <div>
-          <div class="step-title">面试准备 & Offer 决策</div>
-          <div class="step-desc">收到面试邀请后针对性准备，模拟训练。收到 offer 后协助分析利弊，帮助做最终决策。</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">6</div>
-        <div>
-          <div class="step-title">入学前答疑（全程陪跑专属）</div>
-          <div class="step-desc">确认入学后，提供签证申请指导、入学准备建议、海外生活常见问题解答，直到你顺利出发。</div>
-        </div>
-      </div>
+      <div class="process-step"><div class="step-num">1</div><div><div class="step-title">免费初步沟通</div><div class="step-desc">私信告诉我你的大致背景（学校、方向、GPA、申请时间线），我会评估是否适合提供服务，并给出初步建议方向。无需付费。</div></div></div>
+      <div class="process-step"><div class="step-num">2</div><div><div class="step-title">确认服务类型 & 签约</div><div class="step-desc">根据你的需求确认服务套餐，发送服务协议（明确内容、交付标准、修改轮次），收取全款或 50% 定金后正式启动。</div></div></div>
+      <div class="process-step"><div class="step-num">3</div><div><div class="step-title">背景材料收集</div><div class="step-desc">填写背景问卷（成绩单、科研经历、目标方向、意向学校），提供现有文书初稿（如有）。我会在 48 小时内完成背景分析。</div></div></div>
+      <div class="process-step"><div class="step-num">4</div><div><div class="step-title">方案制定 & 执行</div><div class="step-desc">选校方案、文书写作指导、套磁策略按时间线推进。全程陪跑学员可随时微信答疑，重要节点安排视频沟通。</div></div></div>
+      <div class="process-step"><div class="step-num">5</div><div><div class="step-title">面试准备 & Offer 决策</div><div class="step-desc">收到面试邀请后针对性准备，模拟训练。收到 offer 后协助分析利弊，帮助做最终决策。</div></div></div>
+      <div class="process-step"><div class="step-num">6</div><div><div class="step-title">入学前答疑（全程陪跑专属）</div><div class="step-desc">确认入学后，提供签证申请指导、入学准备建议、海外生活常见问题解答，直到你顺利出发。</div></div></div>
     </div>
   </section>
 
-  <!-- CASES -->
-  <section id="cases">
+  <div class="footer">© 2026 · 文艺极客 · 个人独立咨询，非中介机构</div>
+</div>
+</div>
+
+<!-- ════════ PAGE: 学员案例 ════════ -->
+<div class="page" id="page-cases">
+<div class="container">
+  <section style="padding-top: 48px;">
     <p class="section-label">学员案例</p>
     <p class="section-title">真实结果，不是精英样本</p>
     <p class="section-sub">持续更新中。第一批早鸟学员的结果将在 2027 年申请季结束后公开。</p>
-
     <div class="case-placeholder">
       <div class="case-placeholder-icon">🌱</div>
-      <div class="case-placeholder-text">
-        第一批学员招募中<br>
-        <span>如果你愿意以早鸟价换取案例背书资格，欢迎私信了解详情</span>
-      </div>
+      <div class="case-placeholder-text">第一批学员招募中<br><span>如果你愿意以早鸟价换取案例背书资格，欢迎私信了解详情</span></div>
     </div>
-
     <div class="divider"></div>
-
     <p style="font-size:12px;color:var(--ink-light);margin-bottom:16px;font-weight:500;letter-spacing:0.06em;">顾问本人申请结果（可参考基准）</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="result-card">
-        <div class="result-tag">美国</div>
-        <div class="result-school">University of Notre Dame</div>
-        <div class="result-detail">CSE PhD · 全奖 · US News Top 20</div>
-      </div>
-      <div class="result-card">
-        <div class="result-tag">香港</div>
-        <div class="result-school">港大 / 港中文 / 港城大</div>
-        <div class="result-detail">CS/AI PhD · 全奖 · 三校 offer</div>
-      </div>
-      <div class="result-card" style="grid-column:1/-1;">
-        <div class="result-tag">背景</div>
-        <div class="result-school">均分 85 · 无 pub · 无暑研 · 无强推</div>
-        <div class="result-detail">全程 DIY · 约 20 个项目 · 26 Fall</div>
-      </div>
+      <div class="result-card"><div class="result-tag">美国</div><div class="result-school">University of Notre Dame</div><div class="result-detail">CSE PhD · 全奖 · US News Top 20</div></div>
+      <div class="result-card"><div class="result-tag">香港</div><div class="result-school">港大 / 港中文 / 港城大</div><div class="result-detail">CS/AI PhD · 全奖 · 三校 offer</div></div>
+      <div class="result-card" style="grid-column:1/-1;"><div class="result-tag">背景</div><div class="result-school">均分 85 · 无 pub · 无暑研 · 无强推</div><div class="result-detail">全程 DIY · 约 20 个项目 · 26 Fall</div></div>
     </div>
   </section>
+  <div class="footer">© 2026 · 文艺极客 · 个人独立咨询，非中介机构</div>
+</div>
+</div>
 
-  <!-- FAQ -->
-  <section id="faq">
+<!-- ════════ PAGE: FAQ ════════ -->
+<div class="page" id="page-faq">
+<div class="container">
+  <section style="padding-top: 48px;">
     <p class="section-label">常见问题</p>
+    <p class="section-title">你可能想问的</p>
 
-    <div class="faq-item">
-      <div class="faq-q">我本科不是顶校、GPA 不高，适合找你咨询吗？</div>
-      <div class="faq-a">非常适合。我自己就是这样的情况——985 但非顶校，均分 85，无 pub 无暑研。申请成功的关键从来不只是 GPA，科研经历的包装方式、套磁策略的精准度、选校逻辑同样决定结果。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">硕士申请也可以找你吗？</div>
-      <div class="faq-a">可以。我有完整的 MPhil 申请经历（HKUST 全奖），对港校和部分欧洲硕士项目有深入了解。美国 Research Master 的申请逻辑和 PhD 相近，也可以提供指导。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">你能帮非 CS 方向的同学吗？</div>
-      <div class="faq-a">我的专精是 CS / AI，对这个领域的导师生态和申请节奏最了解。EE / ECE / DS / HCI 等近似方向可以咨询。如果不确定，欢迎先免费私信说明情况，我会直接告诉你我能提供多少有效帮助。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">保证录取吗？</div>
-      <div class="faq-a">不保证，也不会承诺。PhD 录取涉及太多不可控因素（导师是否招人、委员会偏好等），任何顾问声称"保录"都是不诚实的。我能保证的是：提供真实可靠的策略建议、认真修改每一份文书、全程有人陪你分析和决策。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">付款方式和退款规则是什么？</div>
-      <div class="faq-a">微信 / 支付宝转账。单次咨询全额预付；全程 / 半程陪跑启动时收 50% 定金，服务开始后不退定金，尾款按约定节点支付。如我本人原因无法履约，全额退款。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">咨询是线上还是线下？</div>
-      <div class="faq-a">全程线上，微信视频或腾讯会议均可。文书修改通过在线文档异步完成，方便你随时查看批注和修改记录。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">如何预约？</div>
-      <div class="faq-a">私信小红书账号「文艺极客AIGC」，简单说明你的背景和最想解决的问题，我会在 24 小时内回复。</div>
-    </div>
+    <div class="faq-item"><div class="faq-q">我本科不是顶校、GPA 不高，适合找你咨询吗？</div><div class="faq-a">非常适合。我自己就是这样的情况——985 但非顶校，均分 85，无 pub 无暑研。申请成功的关键从来不只是 GPA，科研经历的包装方式、套磁策略的精准度、选校逻辑同样决定结果。</div></div>
+    <div class="faq-item"><div class="faq-q">硕士申请也可以找你吗？</div><div class="faq-a">可以。我有完整的 MPhil 申请经历（HKUST 全奖），对港校和部分欧洲硕士项目有深入了解。美国 Research Master 的申请逻辑和 PhD 相近，也可以提供指导。</div></div>
+    <div class="faq-item"><div class="faq-q">你能帮非 CS 方向的同学吗？</div><div class="faq-a">我的专精是 CS / AI，对这个领域的导师生态和申请节奏最了解。EE / ECE / DS / HCI 等近似方向可以咨询。如果不确定，欢迎先免费私信说明情况，我会直接告诉你我能提供多少有效帮助。</div></div>
+    <div class="faq-item"><div class="faq-q">保证录取吗？</div><div class="faq-a">不保证，也不会承诺。PhD 录取涉及太多不可控因素（导师是否招人、委员会偏好等），任何顾问声称"保录"都是不诚实的。我能保证的是：提供真实可靠的策略建议、认真修改每一份文书、全程有人陪你分析和决策。</div></div>
+    <div class="faq-item"><div class="faq-q">付款方式和退款规则是什么？</div><div class="faq-a">微信 / 支付宝转账。单次咨询全额预付；全程 / 半程陪跑启动时收 50% 定金，服务开始后不退定金，尾款按约定节点支付。如我本人原因无法履约，全额退款。</div></div>
+    <div class="faq-item"><div class="faq-q">咨询是线上还是线下？</div><div class="faq-a">全程线上，微信视频或腾讯会议均可。文书修改通过在线文档异步完成，方便你随时查看批注和修改记录。</div></div>
+    <div class="faq-item"><div class="faq-q">如何预约？</div><div class="faq-a">私信小红书账号「文艺极客AIGC」，简单说明你的背景和最想解决的问题，我会在 24 小时内回复。</div></div>
 
     <div style="text-align:center;margin-top:32px;">
-      <a href="#contact" class="btn-primary">还有疑问？直接来聊，初次沟通免费 →</a>
+      <button class="btn-primary" onclick="switchPage('contact', document.querySelectorAll('.nav-tab')[5])">还有疑问？直接来聊，初次沟通免费 →</button>
     </div>
   </section>
+  <div class="footer">© 2026 · 文艺极客 · 个人独立咨询，非中介机构</div>
+</div>
+</div>
 
-  <!-- DISCLAIMER -->
-  <section style="padding: 32px 0; border-bottom: none;">
+<!-- ════════ PAGE: 联系我 ════════ -->
+<div class="page" id="page-contact">
+<div class="container">
+  <section style="padding-top: 48px; border-bottom: none;">
+    <p class="section-label">联系我</p>
+    <p class="section-title">准备好了？来聊聊吧</p>
+
+    <div class="contact-box" style="margin-bottom: 24px;">
+      <h3>初步沟通免费，不强制推销</h3>
+      <p>发一条私信，告诉我你的大致情况和最想解决的问题，<br>我会认真回复每一位。</p>
+      <div class="contact-methods">
+        <div class="contact-item"><span>小红书私信</span>文艺极客AIGC</div>
+        <div class="contact-item"><span>微信（扫码 / 搜索）</span>GeekFocus</div>
+      </div>
+    </div>
+
     <div class="disclaimer">
       <strong>服务说明 · 风险提示：</strong>本服务为个人独立咨询，非留学中介机构，不代为提交申请材料。PhD 录取结果受多方因素影响（导师招生计划、委员会偏好、竞争情况等），咨询服务不构成录取承诺。所有建议基于顾问个人申请经历与了解，仅供参考。学员隐私信息严格保密，未经授权不用于任何宣传。
     </div>
   </section>
-
-  <!-- CONTACT -->
-  <section id="contact" style="border-bottom:none; padding-top: 0;">
-    <div class="contact-box">
-      <h3>准备好了？来聊聊吧</h3>
-      <p>发一条私信，告诉我你的大致情况和最想解决的问题，<br>我会认真回复每一位。初步沟通免费，不强制推销。</p>
-      <div class="contact-methods">
-        <div class="contact-item">
-          <span>小红书私信</span>
-          文艺极客AIGC
-        </div>
-        <div class="contact-item">
-          <span>微信（扫码 / 搜索）</span>
-          GeekFocus
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">
-    © 2026 · 文艺极客 · 个人独立咨询，非中介机构<br>
-    CS / AI PhD · MPhil · 全球混申 · 全程 DIY 陪跑
-  </div>
-
+  <div class="footer">© 2026 · 文艺极客 · 个人独立咨询，非中介机构<br>CS / AI PhD · MPhil · 全球混申 · 全程 DIY 陪跑</div>
 </div>
+</div>
+
+<script>
+  function switchPage(pageId, clickedTab) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Show target page
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+    // Update nav tabs
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    if (clickedTab) clickedTab.classList.add('active');
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
